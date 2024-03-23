@@ -1,0 +1,62 @@
+[
+	{
+		"id": 1,
+		"variationTypeId": 1,
+		"name": "Small",
+		"additionalPrice": 0
+	},
+	{
+		"id": 2,
+		"variationTypeId": 1,
+		"name": "Medium",
+		"additionalPrice": 5
+	},
+	{
+		"id": 3,
+		"variationTypeId": 1,
+		"name": "Large",
+		"additionalPrice": 10
+	},
+	{
+		"id": 4,
+		"variationTypeId": 2,
+		"name": "Recycled Glass",
+		"additionalPrice": 0
+	},
+	{
+		"id": 5,
+		"variationTypeId": 2,
+		"name": "Ceramic",
+		"additionalPrice": 3
+	},
+	{
+		"id": 6,
+		"variationTypeId": 2,
+		"name": "Metal",
+		"additionalPrice": 4
+	},
+	{
+		"id": 7,
+		"variationTypeId": 3,
+		"name": "Cotton",
+		"additionalPrice": 0
+	},
+	{
+		"id": 8,
+		"variationTypeId": 3,
+		"name": "Wood",
+		"additionalPrice": 2
+	},
+	{
+		"id": 9,
+		"variationTypeId": 4,
+		"name": "Standard",
+		"additionalPrice": 0
+	},
+	{
+		"id": 10,
+		"variationTypeId": 4,
+		"name": "Gift-Ready",
+		"additionalPrice": 5
+	}
+]

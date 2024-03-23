@@ -1,0 +1,72 @@
+[
+	{
+		"id": 1,
+		"name": "Lavender Fields",
+		"description": "Embrace the calming scent of lavender fields in full bloom. Made with real lavender buds and essential oils, this candle brings the tranquil beauty of Provence into your home.",
+		"basePrice": 24.99,
+		"category": "Floral"
+	},
+	{
+		"id": 2,
+		"name": "Tropical Paradise",
+		"description": "A lush, fruity scent that transports you to a tropical paradise. Infused with real pieces of dried mango and coconut, this candle is your escape to the beaches of Thailand.",
+		"basePrice": 26.99,
+		"category": "Fruity"
+	},
+	{
+		"id": 3,
+		"name": "Arctic Whisper",
+		"description": "Cool and crisp as the Arctic air. This refreshing scent, with hints of peppermint and eucalyptus, encapsulates the essence of an Arctic breeze.",
+		"basePrice": 28.99,
+		"category": "Minty"
+	},
+	{
+		"id": 4,
+		"name": "Desert Dusk",
+		"description": "Experience the warmth and mystery of a desert at dusk. With notes of sandalwood and cactus flower, this candle captures the serene beauty of the desert landscape.",
+		"basePrice": 27.99,
+		"category": "Earthy"
+	},
+	{
+		"id": 5,
+		"name": "Mountain Retreat",
+		"description": "Breathe in the crisp, clean air of the mountains. This candle features a blend of cedarwood and pine, embodying the peaceful solitude of a mountain retreat.",
+		"basePrice": 29.99,
+		"category": "Woody"
+	},
+	{
+		"id": 6,
+		"name": "Ocean Breeze",
+		"description": "Capture the essence of the ocean with this refreshing scent. Notes of sea salt and kelp blend with a hint of citrus, reminiscent of a breezy day at the shore.",
+		"basePrice": 25.99,
+		"category": "Fresh"
+	},
+	{
+		"id": 7,
+		"name": "Autumn Harvest",
+		"description": "Embrace the cozy warmth of autumn with this candle. With scents of pumpkin, cinnamon, and nutmeg, it's like the essence of fall encapsulated in wax.",
+		"basePrice": 27.99,
+		"category": "Spicy"
+	},
+	{
+		"id": 8,
+		"name": "Midnight Jasmine",
+		"description": "Let the intoxicating scent of jasmine under the moonlight enchant your senses. This floral masterpiece brings the allure of a midnight garden into your home.",
+		"basePrice": 30.99,
+		"category": "Floral"
+	},
+	{
+		"id": 9,
+		"name": "Herbal Retreat",
+		"description": "Find your inner peace with this calming blend of lavender, chamomile, and sage. Perfect for meditation or unwinding after a long day.",
+		"basePrice": 28.99,
+		"category": "Herbal"
+	},
+	{
+		"id": 10,
+		"name": "Citrus Grove",
+		"description": "Energize your space with the zesty and refreshing scent of a citrus grove at dawn. Blends of lemon, orange, and grapefruit awaken the senses and brighten your mood.",
+		"basePrice": 26.99,
+		"category": "Citrus"
+	}
+]

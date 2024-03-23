@@ -1,0 +1,82 @@
+[
+	{
+		"id": 1,
+		"productId": 1,
+		"variationTypeId": 1,
+		"optionId": 1,
+		"priceIncrement": 0,
+		"stock": 50
+	},
+	{
+		"id": 2,
+		"productId": 1,
+		"variationTypeId": 1,
+		"optionId": 2,
+		"priceIncrement": 5,
+		"stock": 45
+	},
+	{
+		"id": 3,
+		"productId": 1,
+		"variationTypeId": 1,
+		"optionId": 3,
+		"priceIncrement": 10,
+		"stock": 30
+	},
+	{
+		"id": 4,
+		"productId": 1,
+		"variationTypeId": 2,
+		"optionId": 4,
+		"priceIncrement": 0,
+		"stock": 50
+	},
+	{
+		"id": 5,
+		"productId": 1,
+		"variationTypeId": 2,
+		"optionId": 5,
+		"priceIncrement": 3,
+		"stock": 50
+	},
+	{
+		"id": 6,
+		"productId": 2,
+		"variationTypeId": 1,
+		"optionId": 1,
+		"priceIncrement": 0,
+		"stock": 60
+	},
+	{
+		"id": 7,
+		"productId": 2,
+		"variationTypeId": 1,
+		"optionId": 2,
+		"priceIncrement": 5,
+		"stock": 55
+	},
+	{
+		"id": 8,
+		"productId": 2,
+		"variationTypeId": 1,
+		"optionId": 3,
+		"priceIncrement": 10,
+		"stock": 40
+	},
+	{
+		"id": 9,
+		"productId": 2,
+		"variationTypeId": 2,
+		"optionId": 4,
+		"priceIncrement": 0,
+		"stock": 60
+	},
+	{
+		"id": 10,
+		"productId": 2,
+		"variationTypeId": 2,
+		"optionId": 5,
+		"priceIncrement": 3,
+		"stock": 60
+	}
+]
