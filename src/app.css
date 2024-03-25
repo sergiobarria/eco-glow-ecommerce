@@ -86,22 +86,22 @@
 	}
 
 	h1 {
-		@apply mb-4 text-2xl md:text-3xl lg:text-4xl;
+		@apply mb-4 text-2xl md:text-3xl;
 	}
 
 	h2 {
-		@apply mb-4 text-xl md:text-2xl lg:text-3xl;
+		@apply mb-4 text-xl md:text-2xl;
 	}
 
 	h3 {
-		@apply mb-4 text-lg md:text-xl lg:text-2xl;
+		@apply mb-4 text-lg md:text-xl;
 	}
 
 	h4 {
-		@apply mb-4 text-base md:text-lg lg:text-xl;
+		@apply mb-4 text-base md:text-lg;
 	}
 
 	p {
-		@apply font-body mb-4;
+		@apply mb-4 font-body;
 	}
 }

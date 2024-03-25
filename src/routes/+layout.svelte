@@ -7,4 +7,9 @@
 	import '../app.css';
 </script>
 
+<svelte:head>
+	<title>EcoEssence</title>
+	<meta name="description" content="EcoEssence Candles" />
+</svelte:head>
+
 <slot />
