@@ -8,9 +8,23 @@ import { MaxWidthContainer } from '@/components/site/max-width-container';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-import products from '../../../data/products.json';
+import { apiClient } from '@/lib/axios';
+import type { ProductListResponse } from '@/types/product';
+import { ProductHighlight } from '@/components/home/product-highlight';
+import { env } from '@/lib/env';
 
-export default function Home() {
+async function getFeaturedProducts() {
+	const URL = env.API_BASE_URL + '/products?is_featured=true&limit=3&offset=0';
+	const { items }: ProductListResponse = await fetch(URL, {
+		next: { revalidate: 60 * 60 * 24 },
+	}).then(res => res.json());
+
+	return items;
+}
+
+export default async function Home() {
+	const featuredProducts = await getFeaturedProducts();
+
 	return (
 		<>
 			<section
@@ -44,13 +58,15 @@ export default function Home() {
 				</MaxWidthContainer>
 			</section>
 
-			<AppSection>
+			<ProductHighlight />
+
+			<AppSection className="pt-0">
 				<MaxWidthContainer className="container">
 					<h2 className="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
 						Featured Products
 					</h2>
 
-					<ListProducts products={products.slice(0, 3)} />
+					<ListProducts products={featuredProducts} />
 
 					<div className="mt-8 flex justify-center">
 						<Button variant="link" asChild>
@@ -60,7 +76,7 @@ export default function Home() {
 				</MaxWidthContainer>
 			</AppSection>
 
-			<section className="w-full bg-zinc-200 py-12 md:py-24 lg:py-32">
+			<AppSection className="w-full">
 				<div className="container px-4 md:px-6">
 					<div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
 						<Image
@@ -99,9 +115,9 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-			</section>
+			</AppSection>
 
-			<section className="w-full bg-background py-12 text-foreground md:py-24 lg:py-32">
+			<AppSection className="w-full bg-background text-foreground">
 				<div className="container px-4 md:px-6">
 					<div className="flex flex-col items-center space-y-4 text-center">
 						<div className="space-y-2">
@@ -127,7 +143,7 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-			</section>
+			</AppSection>
 		</>
 	);
 }

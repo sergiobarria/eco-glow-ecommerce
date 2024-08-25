@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { cn } from '@/lib/utils';
+import { Jura } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+import { cn } from '@/lib/utils';
+import './globals.css';
+
+const jura = Jura({ preload: true, subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'EcoGlow',
@@ -17,7 +18,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={cn('antialiased', inter.className)}>{children}</body>
+			<body className={cn('antialiased', jura.className)}>{children}</body>
 		</html>
 	);
 }

@@ -1,9 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
-import { AddToCartBtn } from './add-to-cart-btn';
 import { calculateDiscountPrice, formatCurrency } from '@/lib/utils';
 import { Product } from '@/types/product';
-import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export function ListProducts({ products }: { products: Product[] }) {
 	return (
@@ -11,12 +11,11 @@ export function ListProducts({ products }: { products: Product[] }) {
 			{products.map(product => (
 				<div key={product.id} className="flex flex-col items-center">
 					<Image
-						src="https://placehold.co/400"
+						src={product.images?.at(0)?.image ?? 'https://placehold.co/400'}
 						alt={product.name}
 						width={200}
 						height={200}
-						className="rounded-lg object-cover"
-						unoptimized // TODO: Remove this in production
+						className="rounded-lg bg-gray-100 object-cover"
 					/>
 					<Link
 						href={`/products/${product.slug}`}
@@ -25,7 +24,7 @@ export function ListProducts({ products }: { products: Product[] }) {
 						<h3 className="mt-4 text-xl font-semibold">{product.name}</h3>
 					</Link>
 					<p className="text-center text-sm text-gray-500">
-						{product.description.substring(0, 75)}...
+						{product.summary?.substring(0, 75)}...
 					</p>
 
 					<div className="mb-4 flex items-center justify-center">
@@ -52,7 +51,9 @@ export function ListProducts({ products }: { products: Product[] }) {
 						)}
 					</div>
 
-					<AddToCartBtn />
+					<Button asChild>
+						<Link href={`/products/${product.slug}`}>View Details</Link>
+					</Button>
 				</div>
 			))}
 		</div>
