@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export const env = createEnv({
 	server: {
-		API_BASE_URL: z.string().url(),
+		DATABASE_URL: z.string(),
 	},
 	client: {},
 	shared: {
@@ -11,7 +11,7 @@ export const env = createEnv({
 	},
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
-		API_BASE_URL: process.env.API_BASE_URL,
+		DATABASE_URL: process.env.DATABASE_URL,
 	},
 	emptyStringAsUndefined: true,
 });

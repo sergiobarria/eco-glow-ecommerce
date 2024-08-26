@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import { Jura } from 'next/font/google';
-
-import { cn } from '@/lib/utils';
 import './globals.css';
 
 const jura = Jura({ preload: true, subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'EcoGlow',
-	description: 'Eco-friendly, sustainable, and affordable candles.',
+	title: 'EcoGlow E-Commerce',
+	description: 'Eco-friendly scented candles for a sustainable future',
 };
 
 export default function RootLayout({
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={cn('antialiased', jura.className)}>{children}</body>
+			<body className={jura.className}>{children}</body>
 		</html>
 	);
 }

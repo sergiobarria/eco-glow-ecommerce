@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import createJiti from 'jiti';
+
 const jiti = createJiti(fileURLToPath(import.meta.url));
 
 // Validate environment variables
@@ -15,12 +16,12 @@ const nextConfig = {
 				port: '',
 				pathname: '**/*',
 			},
-			{
-				protocol: 'https',
-				hostname: '133dcc8e314c1a4add6883375b2e905a.r2.cloudflarestorage.com',
-				port: '',
-				pathname: '**/*',
-			},
+			// {
+			// 	protocol: 'https',
+			// 	hostname: '133dcc8e314c1a4add6883375b2e905a.r2.cloudflarestorage.com',
+			// 	port: '',
+			// 	pathname: '**/*',
+			// },
 		],
 	},
 	logging: {
