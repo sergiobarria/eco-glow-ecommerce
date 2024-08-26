@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const env = createEnv({
 	server: {
 		DATABASE_URL: z.string(),
+		DATABASE_AUTH_TOKEN: z.string(),
 	},
 	client: {},
 	shared: {
@@ -12,6 +13,7 @@ export const env = createEnv({
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
 		DATABASE_URL: process.env.DATABASE_URL,
+		DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
 	},
 	emptyStringAsUndefined: true,
 });
