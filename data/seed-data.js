@@ -70,7 +70,7 @@ export const PRODUCTS = [
 			'Experience the warmth and mystery of a desert at dusk. With notes of sandalwood and cactus flower, this candle captures the serene beauty of the desert landscape.',
 		summary: '',
 		price: 27.99,
-		discount: 0,
+		discount: 10,
 		category: 'Earthy',
 		rating: 4.5,
 		review_count: 25,

@@ -29,7 +29,7 @@ export const candlesTable = sqliteTable('candles', {
 	price: int('price').notNull(),
 	discount: int('discount').notNull().default(0),
 	rating: int('rating').notNull().default(0),
-	reviewCount: int('reviewCount').notNull().default(0),
+	reviewCount: int('review_count').notNull().default(0),
 	inStock: int('in_stock', { mode: 'boolean' }).notNull().default(true),
 	isFeatured: int('is_featured', { mode: 'boolean' }).notNull().default(false),
 

@@ -115,6 +115,7 @@ async function deleteExistingData() {
 	await db.delete(categoriesTable);
 	await db.delete(addonsTable);
 	await db.delete(addonOptionsTable);
+	await db.delete(imagesTable);
 }
 
 async function main() {

@@ -15,6 +15,13 @@
       "when": 1724743327926,
       "tag": "0001_clumsy_puck",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1724780692330,
+      "tag": "0002_brainy_dust",
+      "breakpoints": true
     }
   ]
 }

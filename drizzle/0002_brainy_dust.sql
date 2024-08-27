@@ -1,0 +1,1 @@
+ALTER TABLE `candles` RENAME COLUMN `reviewCount` TO `review_count`;
