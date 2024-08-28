@@ -79,6 +79,23 @@ export const imagesTable = sqliteTable('images', {
 	candleId: text('candle_id').references(() => candlesTable.id, { onDelete: 'cascade' }),
 });
 
+export const reviewsTable = sqliteTable('reviews', {
+	id: text('id')
+		.primaryKey()
+		.$defaultFn(() => createId()),
+	created: text('created')
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`),
+	modified: text('modified'),
+	customer: text('customer').notNull(),
+	rating: int('rating').notNull(),
+	comment: text('comment').notNull(),
+	date: text('date').notNull(),
+
+	// Relationships -> This are DB constraints, not useful for the ORM
+	candleId: text('candle_id').references(() => candlesTable.id, { onDelete: 'cascade' }),
+})
+
 // ========== ORM RELATIONSHIPS ==========
 export const categoriesRelations = relations(categoriesTable, ({ many }) => ({
 	candles: many(candlesTable),
@@ -90,6 +107,7 @@ export const candlesRelations = relations(candlesTable, ({ one, many }) => ({
 		references: [categoriesTable.id],
 	}),
 	images: many(imagesTable),
+	reviews: many(reviewsTable),
 }));
 
 export const addonsRelations = relations(addonsTable, ({ many }) => ({
@@ -106,6 +124,13 @@ export const addonOptionsRelations = relations(addonOptionsTable, ({ one }) => (
 export const imagesRelations = relations(imagesTable, ({ one }) => ({
 	candle: one(candlesTable, {
 		fields: [imagesTable.candleId],
+		references: [candlesTable.id],
+	}),
+}));
+
+export const reviewsRelations = relations(reviewsTable, ({ one }) => ({
+	candle: one(candlesTable, {
+		fields: [reviewsTable.candleId],
 		references: [candlesTable.id],
 	}),
 }));

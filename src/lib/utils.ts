@@ -16,3 +16,11 @@ export function calculateDiscountPrice(price: number, discount: number | null) {
 	if (!discount) return price;
 	return price - (price * discount) / 100;
 }
+
+export function formatDate(date: string) {
+	return new Date(date).toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+}

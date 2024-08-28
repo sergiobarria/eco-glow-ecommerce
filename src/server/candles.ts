@@ -62,6 +62,9 @@ export const getCandleBySlug = unstable_cache(
 				images: {
 					columns: { imageKey: true },
 				},
+				reviews: {
+					columns: { created: false, modified: false },
+				},
 			},
 		});
 

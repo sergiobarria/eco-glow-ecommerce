@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { CandleImageGallery } from './candle-image-gallery';
 import { CandleAddons } from './candle-addons';
 import { AddToCartBtn } from './add-to-cart-btn';
+import { CandleReviews } from './candle-reviews';
 
 interface CandleDetailsPageProps {
 	params: Readonly<{
@@ -75,10 +76,7 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 				</div>
 			</div>
 
-			<div className="mt-12">
-				<h2 className="mb-4 text-2xl font-bold">Customer Reviews</h2>
-				<p className="text-gray-600">Reviews will be displayed here.</p>
-			</div>
+			<CandleReviews reviews={candle.reviews} />
 
 			<div className="mt-12">
 				<h2 className="mb-4 text-2xl font-bold">Recommended Products</h2>
@@ -104,7 +102,9 @@ function ProductPrice({ price, discount }: { price: number; discount: number | n
 					</span>
 				</>
 			) : (
-				<span className="text-2xl font-bold text-primary">{formatCurrency(price)}</span>
+				<span className="text-2xl font-bold text-primary">
+					{formatCurrency(price / 100)}
+				</span>
 			)}
 		</div>
 	);

@@ -14,3 +14,4 @@ export type AddonOption = typeof schema.addonOptionsTable.$inferSelect;
 export type AddonWithOption = Omit<Addon, 'created' | 'modified'> & {
 	options: Omit<AddonOption, 'created' | 'modified'>[];
 };
+export type Review = typeof schema.reviewsTable.$inferSelect;

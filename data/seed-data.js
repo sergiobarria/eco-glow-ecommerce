@@ -307,3 +307,145 @@ export const ADDONS = [
 		],
 	},
 ];
+
+export const REVIEWS = [
+	// Reviews for Lavender Fields
+	{
+	  productName: 'Lavender Fields',
+	  customer: 'Alice M.',
+	  rating: 5,
+	  comment: 'Absolutely love this candle! The lavender scent is so soothing, and it fills the whole room.',
+	  date: '2023-07-12',
+	},
+	{
+	  productName: 'Lavender Fields',
+	  customer: 'John D.',
+	  rating: 4,
+	  comment: 'Great scent, but I wish it lasted a bit longer.',
+	  date: '2023-07-15',
+	},
+	{
+	  productName: 'Lavender Fields',
+	  customer: 'Sara P.',
+	  rating: 5,
+	  comment: 'Perfect for relaxing after a long day. Will definitely buy again!',
+	  date: '2023-07-20',
+	},
+  
+	// Reviews for Tropical Paradise
+	{
+	  productName: 'Tropical Paradise',
+	  customer: 'Emily R.',
+	  rating: 5,
+	  comment: 'Takes me straight to a tropical beach. The mango and coconut blend is fantastic!',
+	  date: '2023-08-01',
+	},
+	{
+	  productName: 'Tropical Paradise',
+	  customer: 'Chris B.',
+	  rating: 4,
+	  comment: 'Nice fruity scent, but a bit too strong for my taste.',
+	  date: '2023-08-03',
+	},
+  
+	// Reviews for Arctic Whisper
+	{
+	  productName: 'Arctic Whisper',
+	  customer: 'David K.',
+	  rating: 5,
+	  comment: 'Cool and refreshing. Perfect for those hot summer days.',
+	  date: '2023-08-05',
+	},
+  
+	// Reviews for Desert Dusk
+	{
+	  productName: 'Desert Dusk',
+	  customer: 'Maria L.',
+	  rating: 4,
+	  comment: 'Beautiful scent, but the sandalwood can be a bit overpowering.',
+	  date: '2023-08-10',
+	},
+	{
+	  productName: 'Desert Dusk',
+	  customer: 'Nathan T.',
+	  rating: 5,
+	  comment: 'Reminds me of desert evenings. Absolutely love it!',
+	  date: '2023-08-12',
+	},
+  
+	// Reviews for Mountain Retreat
+	{
+	  productName: 'Mountain Retreat',
+	  customer: 'Sophia W.',
+	  rating: 5,
+	  comment: 'The pine and cedarwood combination is amazing. It feels like I’m in a cabin in the mountains.',
+	  date: '2023-08-15',
+	},
+  
+	// Reviews for Ocean Breeze
+	{
+	  productName: 'Ocean Breeze',
+	  customer: 'Mark H.',
+	  rating: 4,
+	  comment: 'Refreshing scent, but a bit too light for my liking.',
+	  date: '2023-08-18',
+	},
+	{
+	  productName: 'Ocean Breeze',
+	  customer: 'Jessica G.',
+	  rating: 5,
+	  comment: 'Brings the beach right into my living room. Love it!',
+	  date: '2023-08-20',
+	},
+  
+	// Reviews for Autumn Harvest
+	{
+	  productName: 'Autumn Harvest',
+	  customer: 'Olivia F.',
+	  rating: 5,
+	  comment: 'Perfect fall scent. The pumpkin and cinnamon are so cozy!',
+	  date: '2023-08-25',
+	},
+  
+	// Reviews for Midnight Jasmine
+	{
+	  productName: 'Midnight Jasmine',
+	  customer: 'Lucas S.',
+	  rating: 5,
+	  comment: 'The jasmine scent is so intoxicating. Perfect for a romantic evening.',
+	  date: '2023-08-30',
+	},
+	{
+	  productName: 'Midnight Jasmine',
+	  customer: 'Ava J.',
+	  rating: 4,
+	  comment: 'Beautiful scent, but a bit too strong for my small apartment.',
+	  date: '2023-09-02',
+	},
+  
+	// Reviews for Herbal Retreat
+	{
+	  productName: 'Herbal Retreat',
+	  customer: 'Liam M.',
+	  rating: 5,
+	  comment: 'Calming and perfect for meditation. The lavender and chamomile blend is spot on.',
+	  date: '2023-09-05',
+	},
+  
+	// Reviews for Citrus Grove
+	{
+	  productName: 'Citrus Grove',
+	  customer: 'Ethan C.',
+	  rating: 5,
+	  comment: 'Energizing and refreshing. The citrus blend is fantastic!',
+	  date: '2023-09-10',
+	},
+	{
+	  productName: 'Citrus Grove',
+	  customer: 'Emma B.',
+	  rating: 4,
+	  comment: 'Great scent, but the grapefruit is a bit too sharp for my taste.',
+	  date: '2023-09-12',
+	},
+  ];
+  

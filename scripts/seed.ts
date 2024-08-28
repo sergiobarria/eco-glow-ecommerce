@@ -6,7 +6,7 @@ import { createClient } from '@libsql/client';
 import slugify from 'slugify';
 import * as dotenv from 'dotenv';
 
-import { PRODUCTS, CATEGORIES, ADDONS } from '../data/seed-data';
+import { PRODUCTS, CATEGORIES, ADDONS, REVIEWS } from '../data/seed-data';
 import { uploadImage } from './upload-images';
 
 import {
@@ -15,6 +15,7 @@ import {
 	addonsTable,
 	addonOptionsTable,
 	imagesTable,
+	reviewsTable,
 } from '../src/server/db/schema';
 
 dotenv.config({ path: '.env.local' });
@@ -106,6 +107,19 @@ async function seedProducts() {
 			});
 			console.log('=> ✅ Inserted Image:', key);
 		}
+
+		// Insert the product reviews
+		const reviews = REVIEWS.filter(review => review.productName === product.name);
+		for (const review of reviews) {
+			await db.insert(reviewsTable).values({
+				customer: review.customer,
+				rating: review.rating,
+				comment: review.comment,
+				date: new Date(review.date).toISOString(),
+				candleId: productId,
+			});
+			console.log('=> ✅ Inserted review:', review.customer);
+		}
 	}
 }
 
@@ -116,6 +130,7 @@ async function deleteExistingData() {
 	await db.delete(addonsTable);
 	await db.delete(addonOptionsTable);
 	await db.delete(imagesTable);
+	await db.delete(reviewsTable);
 }
 
 async function main() {
