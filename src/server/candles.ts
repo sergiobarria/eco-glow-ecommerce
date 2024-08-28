@@ -58,6 +58,7 @@ export const getCandleBySlug = unstable_cache(
 		const candle = await db.query.candlesTable.findFirst({
 			where: (candles, { eq }) => eq(candles.slug, slug),
 			with: {
+				category: true,
 				images: {
 					columns: { imageKey: true },
 				},
