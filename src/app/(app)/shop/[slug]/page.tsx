@@ -16,10 +16,8 @@ interface CandleDetailsPageProps {
 
 export default async function CandleDetailsPage({ params }: CandleDetailsPageProps) {
 	const [candle, addons] = await Promise.all([getCandleBySlug(params.slug), getAllAddons()]);
-	console.log('🚀 ~ CandleDetailsPage ~ addons:', addons);
-	// const candle = await getCandleBySlug(params.slug);
-	console.log('🚀 ~ CandleDetailsPage ~ candle:', candle);
 	if (!candle) notFound();
+
 	const { name, images, description, inStock, rating, price, discount, reviewCount, category } =
 		candle;
 
