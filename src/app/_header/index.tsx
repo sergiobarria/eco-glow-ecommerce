@@ -6,6 +6,7 @@ import { getCurrentAuthenticatedUser } from '@/lib/auth/session';
 import { NavigationLinks } from './navigation-links';
 import { ActionsMenu } from './actions-menu';
 import { MobileMenu } from './mobile-menu';
+import { getCartItemsCount, getOrCreateUserCart } from '@/data-access/carts';
 
 const links = [
 	{ label: 'Home', href: '/' },
@@ -38,8 +39,10 @@ export async function Header() {
 	);
 }
 
-function CartLink() {
-	const itemsCount = 1;
+async function CartLink() {
+	const user = await getCurrentAuthenticatedUser();
+	const cart = await getOrCreateUserCart(user?.id);
+	const cartItemsCount = await getCartItemsCount(cart);
 
 	return (
 		<Link
@@ -48,9 +51,9 @@ function CartLink() {
 		>
 			<ShoppingCartIcon className="size-4" />
 			<span className="text-sm font-medium">Cart</span>
-			{itemsCount > 0 && (
+			{cartItemsCount > 0 && (
 				<span className="absolute -right-3 -top-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-					{itemsCount}
+					{cartItemsCount}
 				</span>
 			)}
 		</Link>

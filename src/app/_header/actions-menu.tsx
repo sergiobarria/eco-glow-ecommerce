@@ -23,13 +23,13 @@ export function ActionsMenu() {
 		onSuccess: () => {
 			toast.success('You have been signed out');
 		},
-		// onFinish: () => {
-		// 	nProgress.done();
-		// },
+		onFinish: () => {
+			nProgress.done();
+		},
 	});
 
 	async function handleSignOut() {
-		// nProgress.start();
+		nProgress.start();
 		await execute();
 	}
 
@@ -37,7 +37,7 @@ export function ActionsMenu() {
 		<DropdownMenu>
 			<DropdownMenuTrigger>
 				<Avatar>
-					<AvatarImage src="/placeholders.jpg" alt="avatar" />
+					<AvatarImage src="" alt="avatar" />
 					<AvatarFallback>EG</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
