@@ -16,7 +16,7 @@ import {
 	addonOptionsTable,
 	imagesTable,
 	reviewsTable,
-} from '../src/server/db/schema';
+} from '../src/database/schema';
 
 dotenv.config({ path: '.env.local' });
 
