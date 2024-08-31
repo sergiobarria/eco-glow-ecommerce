@@ -39,17 +39,27 @@ export function CandleAddons({ addons }: CandleAddonProps) {
 									href={createURLWithParams(addon.name, option.name)}
 									key={option.id}
 									className={cn(
-										'flex-grow rounded-lg border border-black px-2 py-1 sm:flex-grow-0',
+										'inline-flex w-full flex-col rounded-lg border border-black p-2 lg:w-[calc(50%-0.5rem)]',
 										selectedOption === option.name &&
 											'border-none bg-primary text-white',
 									)}
 									scroll={false}
 									replace
 								>
-									<span className="text-xs">{option.name}</span>
-									<small className="ml-2">
-										(+{option.priceModifier.toFixed(2)})
-									</small>
+									<p className="flex w-full items-center justify-between">
+										<span className="font-bold">{option.name}</span>
+										<small className="ml-2">
+											(+{option.priceModifier.toFixed(2)})
+										</small>
+									</p>
+									<p
+										className={cn(
+											'block w-full text-sm text-gray-500',
+											selectedOption === option.name && 'text-gray-200',
+										)}
+									>
+										Option description here
+									</p>
 								</Link>
 							))}
 						</div>

@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { getAllAddons } from '@/data-access/addons';
 import { getCandleBySlug } from '@/data-access/candles';
 import { cn } from '@/lib/utils';
+import { getCurrentAuthenticatedUser } from '@/lib/auth/session';
 
 interface CandleDetailsPageProps {
 	params: Readonly<{
@@ -21,6 +22,7 @@ interface CandleDetailsPageProps {
 }
 
 export default async function CandleDetailsPage({ params }: CandleDetailsPageProps) {
+	const user = await getCurrentAuthenticatedUser();
 	const [candle, addons] = await Promise.all([getCandleBySlug(params.slug), getAllAddons()]);
 	if (!candle) notFound();
 
@@ -46,6 +48,7 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 				<CandleImageGallery images={images} />
 				<div>
 					<h1 className="text-3xl font-bold">{name}</h1>
+
 					<p className="mb-4 text-gray-600">{description}</p>
 					<div className="mb-2 flex items-center">
 						<div
@@ -59,20 +62,22 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 						</div>
 					</div>
 					<ProductPrice price={price} discount={discount} />
-					<p className="mb-4 text-gray-600">
-						<strong>Category:</strong> {category?.name}
-					</p>
-					<p
-						className={cn(
-							'mb-4 text-sm font-bold',
-							inStock ? 'text-green-600' : 'text-red-600',
-						)}
-					>
-						{inStock ? 'In Stock' : 'Out of Stock'}
-					</p>
+					<div className="flex items-center gap-8">
+						<p className="text-gray-600">
+							<strong>Category:</strong> {category?.name}
+						</p>
+						<span
+							className={cn(
+								'text-sm font-bold',
+								inStock ? 'text-green-600' : 'text-red-600',
+							)}
+						>
+							{inStock ? 'In Stock' : 'Out of Stock'}
+						</span>
+					</div>
 					<hr className="my-4 border-gray-300" />
 					<CandleAddons addons={addons} />
-					<AddToCartBtn candle={candle} addons={addons} />
+					<AddToCartBtn candle={candle} addons={addons} disabled={!user?.id} />
 					<Button asChild className="mt-4 w-full" variant="secondary">
 						<Link href="/cart" className="space-x-2">
 							<ShoppingBagIcon className="size-4" />
