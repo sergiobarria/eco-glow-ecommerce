@@ -20,9 +20,10 @@ interface AddToCartBtnProps {
 	candle: Candle;
 	addons: AddonWithOption[];
 	className?: string;
+	disabled?: boolean;
 }
 
-export function AddToCartBtn({ className, addons, candle }: AddToCartBtnProps) {
+export function AddToCartBtn({ className, addons, candle, disabled = false }: AddToCartBtnProps) {
 	const [totalPrice, setTotalPrice] = useState<number>(candle.price);
 	const requiredParams = ['size', 'container', 'wick', 'packaging'];
 	const searchParams = useSearchParams();
@@ -59,15 +60,21 @@ export function AddToCartBtn({ className, addons, candle }: AddToCartBtnProps) {
 	}
 
 	useEffect(() => {
-		// Calculate the total price based on the selected addons
+		// Initialize the total price with the base candle price
+		let updatedPrice = candle.price;
+
+		// Add the price modifiers for all selected addons
 		for (const addon of addons) {
 			const selectedOption = searchParams.get(addon.name.toLowerCase());
 			const selectedAddon = addon.options.find(opt => opt.name === selectedOption);
 
 			if (selectedAddon) {
-				setTotalPrice(candle.price + selectedAddon.priceModifier * 100);
+				updatedPrice += selectedAddon.priceModifier * 100;
 			}
 		}
+
+		// Update the total price state
+		setTotalPrice(updatedPrice);
 	}, [searchParams, addons, candle.price]);
 
 	return (
@@ -75,7 +82,7 @@ export function AddToCartBtn({ className, addons, candle }: AddToCartBtnProps) {
 			<Button
 				className={cn('w-full uppercase', className)}
 				onClick={handleAddToCart}
-				disabled={!isParamsValid || isPending}
+				disabled={!isParamsValid || isPending || disabled}
 			>
 				{isPending ? (
 					<Loader2Icon className="size-4 animate-spin" />
@@ -88,6 +95,11 @@ export function AddToCartBtn({ className, addons, candle }: AddToCartBtnProps) {
 			{!isParamsValid && (
 				<small className="mt-1 block text-sm italic text-rose-400">
 					You must select all options to add to cart
+				</small>
+			)}
+			{disabled && (
+				<small className="mt-1 block text-sm italic text-rose-400">
+					You must be logged in to add to cart
 				</small>
 			)}
 		</>
