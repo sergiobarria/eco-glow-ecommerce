@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import {
 	Card,
 	CardContent,
@@ -7,7 +9,6 @@ import {
 	CardFooter,
 } from '@/components/ui/card';
 import { SignUpForm } from './sign-up-form';
-import Link from 'next/link';
 
 export default async function SignUpPage() {
 	return (
