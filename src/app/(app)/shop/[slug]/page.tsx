@@ -1,6 +1,6 @@
 import { calculateDiscountPrice, cn, formatCurrency } from '@/lib/utils';
-import { getAllAddons } from '@/server/addons';
-import { getCandleBySlug } from '@/server/candles';
+import { getAllAddons } from '@/data-access/addons';
+import { getCandleBySlug } from '@/data-access/candles';
 import { StarIcon } from 'lucide-react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';

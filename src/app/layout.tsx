@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Jura } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
+
+import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
 const jura = Jura({ preload: true, subsets: ['latin'] });
@@ -16,7 +19,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={jura.className}>{children}</body>
+			<body className={jura.className}>
+				<NextTopLoader showSpinner={false} />
+				{children}
+				<Toaster />
+			</body>
 		</html>
 	);
 }

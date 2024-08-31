@@ -4,7 +4,7 @@ import { FlameIcon, HeartIcon, LeafIcon, MoonIcon, RecycleIcon, SunIcon } from '
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { FeaturedProducts } from './featured-products';
+import { FeaturedProducts } from './shop/featured-products';
 
 export default async function HomePage() {
 	return (

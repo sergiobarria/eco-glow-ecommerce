@@ -1,6 +1,6 @@
 import { StarIcon } from 'lucide-react';
 
-import type { Review } from '@/server/db/types';
+import type { Review } from '@/database/types';
 import { cn, formatDate } from '@/lib/utils';
 
 interface CandleReviewsProps {

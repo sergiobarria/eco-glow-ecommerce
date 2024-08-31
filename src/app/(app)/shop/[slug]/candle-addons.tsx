@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { AddonWithOption } from '@/server/db/types';
+import { AddonWithOption } from '@/database/types';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
