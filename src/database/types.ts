@@ -17,3 +17,12 @@ export type Cart = typeof schema.cartsTable.$inferSelect;
 export type CartItem = typeof schema.cartItemsTable.$inferSelect;
 export type NewCartItem = typeof schema.cartItemsTable.$inferInsert;
 export type NewCartItemAddon = typeof schema.cartItemAddonsTable.$inferInsert;
+
+// ========== CUSTOM TYPES ==========
+export type InsertCartItem = Pick<NewCartItem, 'quantity' | 'candleId' | 'price'>;
+export type InsertCartItemAddon = Pick<NewCartItemAddon, 'addonId' | 'addonOptionId'>;
+
+export interface AddItemToCartInput {
+	cartItem: InsertCartItem;
+	addons: InsertCartItemAddon[];
+}

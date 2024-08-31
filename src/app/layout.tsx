@@ -20,7 +20,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={jura.className}>
-				<NextTopLoader showSpinner={false} />
+				<NextTopLoader showSpinner={false} color="#0A0A0A" />
 				{children}
 				<Toaster />
 			</body>

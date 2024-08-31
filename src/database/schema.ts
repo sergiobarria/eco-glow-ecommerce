@@ -148,7 +148,9 @@ export const cartsTable = sqliteTable('carts', {
 	modified: text('modified'),
 
 	// Relationships
-	userId: text('customer_id').references(() => usersTable.id, { onDelete: 'cascade' }),
+	userId: text('customer_id')
+		.notNull()
+		.references(() => usersTable.id, { onDelete: 'cascade' }),
 });
 
 export const cartItemsTable = sqliteTable(
@@ -166,8 +168,12 @@ export const cartItemsTable = sqliteTable(
 		price: int('price').notNull(),
 
 		// Relationships
-		cartId: text('cart_id').references(() => cartsTable.id, { onDelete: 'cascade' }),
-		candleId: text('candle_id').references(() => candlesTable.id, { onDelete: 'cascade' }),
+		cartId: text('cart_id')
+			.notNull()
+			.references(() => cartsTable.id, { onDelete: 'cascade' }),
+		candleId: text('candle_id')
+			.notNull()
+			.references(() => candlesTable.id, { onDelete: 'cascade' }),
 	},
 	table => {
 		return {
@@ -189,13 +195,19 @@ export const cartItemAddonsTable = sqliteTable(
 		modified: text('modified'),
 
 		// Relationships
-		cartItemId: text('cart_item_id').references(() => cartItemsTable.id, {
-			onDelete: 'cascade',
-		}),
-		addonId: text('addon_id').references(() => addonsTable.id, { onDelete: 'cascade' }),
-		addonOptionId: text('addon_option_id').references(() => addonOptionsTable.id, {
-			onDelete: 'cascade',
-		}),
+		cartItemId: text('cart_item_id')
+			.notNull()
+			.references(() => cartItemsTable.id, {
+				onDelete: 'cascade',
+			}),
+		addonId: text('addon_id')
+			.notNull()
+			.references(() => addonsTable.id, { onDelete: 'cascade' }),
+		addonOptionId: text('addon_option_id')
+			.notNull()
+			.references(() => addonOptionsTable.id, {
+				onDelete: 'cascade',
+			}),
 	},
 	table => {
 		return {
