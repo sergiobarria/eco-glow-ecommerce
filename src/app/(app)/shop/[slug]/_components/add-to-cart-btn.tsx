@@ -2,11 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { ShoppingCartIcon } from 'lucide-react';
+import { Loader2Icon, ShoppingCartIcon } from 'lucide-react';
+import { useServerAction } from 'zsa-react';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { AddonWithOption, Candle, NewCartItem, NewCartItemAddon } from '@/database/types';
+import type {
+	AddonWithOption,
+	Candle,
+	InsertCartItem,
+	InsertCartItemAddon,
+} from '@/database/types';
+import { addItemToCart } from '../actions';
 
 interface AddToCartBtnProps {
 	candle: Candle;
@@ -19,45 +27,47 @@ export function AddToCartBtn({ className, addons, candle }: AddToCartBtnProps) {
 	const requiredParams = ['size', 'container', 'wick', 'packaging'];
 	const searchParams = useSearchParams();
 	const isParamsValid = requiredParams.every(param => searchParams.has(param));
+	const { execute, isPending } = useServerAction(addItemToCart, {
+		onSuccess: () => {
+			toast.success('Item added to cart');
+		},
+	});
 
-	function handleAddToCart() {
-		// Get or create the cart item
-
-		// Add cart item to the cart
-		const newCartItem: NewCartItem = {
+	async function handleAddToCart() {
+		// Format the new cart item
+		const newCartItem: InsertCartItem = {
 			quantity: 1, // TODO: allow user to select quantity (up to 10)
 			price: candle.price,
 			candleId: candle.id,
 		};
 
 		// Get the selected addons from the search params
-		const selectedAddons: NewCartItemAddon[] = addons.map(addon => {
+		const selectedAddons: InsertCartItemAddon[] = addons.map(addon => {
 			const selectedOption = searchParams.get(addon.name.toLowerCase());
 			const option = addon.options.find(opt => opt.name === selectedOption);
 
 			return {
 				addonId: addon.id,
-				cartItemId: '1', // TODO: get the cart item ID
 				addonOptionId: option?.id as string,
 			};
 		});
 
-		// TODO: Add the cart item to the store if the user is not logged in, otherwise add to the cart in the database
-		alert(JSON.stringify(newCartItem));
+		await execute({
+			cartItem: newCartItem,
+			addons: selectedAddons,
+		});
 	}
 
 	useEffect(() => {
-		// Update the total price when the selected addons change
-		let updatedPrice = candle.price;
-
+		// Calculate the total price based on the selected addons
 		for (const addon of addons) {
 			const selectedOption = searchParams.get(addon.name.toLowerCase());
 			const selectedAddon = addon.options.find(opt => opt.name === selectedOption);
 
-			if (selectedAddon) updatedPrice += selectedAddon.priceModifier;
+			if (selectedAddon) {
+				setTotalPrice(candle.price + selectedAddon.priceModifier * 100);
+			}
 		}
-
-		setTotalPrice(updatedPrice);
 	}, [searchParams, addons, candle.price]);
 
 	return (
@@ -65,9 +75,13 @@ export function AddToCartBtn({ className, addons, candle }: AddToCartBtnProps) {
 			<Button
 				className={cn('w-full uppercase', className)}
 				onClick={handleAddToCart}
-				disabled={!isParamsValid}
+				disabled={!isParamsValid || isPending}
 			>
-				<ShoppingCartIcon className="size-4" />
+				{isPending ? (
+					<Loader2Icon className="size-4 animate-spin" />
+				) : (
+					<ShoppingCartIcon className="size-4" />
+				)}
 				<span className="mx-2">Add To Cart</span>
 				<span>(Total: ${(totalPrice / 100).toFixed(2)})</span>
 			</Button>

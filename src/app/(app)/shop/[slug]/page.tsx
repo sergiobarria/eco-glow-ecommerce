@@ -1,4 +1,4 @@
-import { StarIcon } from 'lucide-react';
+import { ShoppingBagIcon, StarIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 import {
@@ -11,6 +11,8 @@ import {
 import { getAllAddons } from '@/data-access/addons';
 import { getCandleBySlug } from '@/data-access/candles';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface CandleDetailsPageProps {
 	params: Readonly<{
@@ -71,6 +73,12 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 					<hr className="my-4 border-gray-300" />
 					<CandleAddons addons={addons} />
 					<AddToCartBtn candle={candle} addons={addons} />
+					<Button asChild className="mt-4 w-full" variant="secondary">
+						<Link href="/cart" className="space-x-2">
+							<ShoppingBagIcon className="size-4" />
+							<span>Go to Checkout</span>
+						</Link>
+					</Button>
 				</div>
 			</div>
 			<CandleReviews reviews={candle.reviews} />
