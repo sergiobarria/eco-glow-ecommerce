@@ -1,34 +1,69 @@
 {
-  "version": "7",
-  "dialect": "sqlite",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "6",
-      "when": 1724702735203,
-      "tag": "0000_tired_liz_osborn",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1724743327926,
-      "tag": "0001_clumsy_puck",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1724780692330,
-      "tag": "0002_brainy_dust",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1724811894770,
-      "tag": "0003_simple_molly_hayes",
-      "breakpoints": true
-    }
-  ]
+	"version": "7",
+	"dialect": "sqlite",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "6",
+			"when": 1724702735203,
+			"tag": "0000_tired_liz_osborn",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "6",
+			"when": 1724743327926,
+			"tag": "0001_clumsy_puck",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "6",
+			"when": 1724780692330,
+			"tag": "0002_brainy_dust",
+			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "6",
+			"when": 1724811894770,
+			"tag": "0003_simple_molly_hayes",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "6",
+			"when": 1724823744729,
+			"tag": "0004_fancy_champions",
+			"breakpoints": true
+		},
+		{
+			"idx": 5,
+			"version": "6",
+			"when": 1724993692013,
+			"tag": "0005_broken_gravity",
+			"breakpoints": true
+		},
+		{
+			"idx": 6,
+			"version": "6",
+			"when": 1725049351988,
+			"tag": "0006_mushy_guardian",
+			"breakpoints": true
+		},
+		{
+			"idx": 7,
+			"version": "6",
+			"when": 1725072230600,
+			"tag": "0007_new_sersi",
+			"breakpoints": true
+		},
+		{
+			"idx": 8,
+			"version": "6",
+			"when": 1725072569876,
+			"tag": "0008_thankful_proteus",
+			"breakpoints": true
+		}
+	]
 }
