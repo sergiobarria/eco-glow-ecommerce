@@ -10,7 +10,7 @@ if (!DATABASE_URL || !DATABASE_AUTH_TOKEN) {
 }
 
 export default defineConfig({
-	schema: 'src/server/db/schema.ts',
+	schema: 'src/database/schema.ts',
 	out: 'drizzle',
 	dialect: 'sqlite',
 	driver: 'turso',
