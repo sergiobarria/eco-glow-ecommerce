@@ -1,13 +1,16 @@
-import { calculateDiscountPrice, cn, formatCurrency } from '@/lib/utils';
+import { StarIcon } from 'lucide-react';
+import { notFound } from 'next/navigation';
+
+import {
+	CandleAddons,
+	ProductPrice,
+	AddToCartBtn,
+	CandleReviews,
+	CandleImageGallery,
+} from './_components';
 import { getAllAddons } from '@/data-access/addons';
 import { getCandleBySlug } from '@/data-access/candles';
-import { StarIcon } from 'lucide-react';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import { CandleImageGallery } from './candle-image-gallery';
-import { CandleAddons } from './candle-addons';
-import { AddToCartBtn } from './add-to-cart-btn';
-import { CandleReviews } from './candle-reviews';
+import { cn } from '@/lib/utils';
 
 interface CandleDetailsPageProps {
 	params: Readonly<{
@@ -41,7 +44,6 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 				<CandleImageGallery images={images} />
 				<div>
 					<h1 className="text-3xl font-bold">{name}</h1>
-
 					<p className="mb-4 text-gray-600">{description}</p>
 					<div className="mb-2 flex items-center">
 						<div
@@ -54,9 +56,7 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 							</small>
 						</div>
 					</div>
-
 					<ProductPrice price={price} discount={discount} />
-
 					<p className="mb-4 text-gray-600">
 						<strong>Category:</strong> {category?.name}
 					</p>
@@ -68,44 +68,16 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 					>
 						{inStock ? 'In Stock' : 'Out of Stock'}
 					</p>
-
 					<hr className="my-4 border-gray-300" />
-
 					<CandleAddons addons={addons} />
 					<AddToCartBtn candle={candle} addons={addons} />
 				</div>
 			</div>
-
 			<CandleReviews reviews={candle.reviews} />
-
 			<div className="mt-12">
 				<h2 className="mb-4 text-2xl font-bold">Recommended Products</h2>
 				<p className="text-gray-600">Recommended Products will be displayed here.</p>
 			</div>
-		</div>
-	);
-}
-
-function ProductPrice({ price, discount }: { price: number; discount: number | null }) {
-	return (
-		<div className="flex items-center">
-			{discount ? (
-				<>
-					<span className="mr-2 text-2xl font-bold text-primary">
-						${calculateDiscountPrice(price / 100, discount).toFixed(2)}
-					</span>
-					<span className="text-lg text-gray-500 line-through">
-						${(price / 100).toFixed(2)}
-					</span>
-					<span className="ml-2 text-2xl font-semibold text-destructive">
-						{discount}% OFF
-					</span>
-				</>
-			) : (
-				<span className="text-2xl font-bold text-primary">
-					{formatCurrency(price / 100)}
-				</span>
-			)}
 		</div>
 	);
 }
