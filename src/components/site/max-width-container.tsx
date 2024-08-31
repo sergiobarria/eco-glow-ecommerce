@@ -7,7 +7,12 @@ interface MaxWidthContainerProps {
 
 export function MaxWidthContainer({ children, className }: MaxWidthContainerProps) {
 	return (
-		<div className={cn('mx-auto h-full w-full max-w-screen-xl px-5 lg:px-6', className)}>
+		<div
+			className={cn(
+				'container mx-auto h-full w-full max-w-screen-xl px-4 md:px-6',
+				className,
+			)}
+		>
 			{children}
 		</div>
 	);
