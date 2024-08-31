@@ -1,5 +1,7 @@
 import { unstable_cache } from 'next/cache';
+
 import { db } from '@/database';
+import { TAGS_KEYS } from '@/constants';
 
 export const getAllAddons = unstable_cache(
 	async () => {
@@ -15,9 +17,9 @@ export const getAllAddons = unstable_cache(
 
 		return addons;
 	},
-	['addons'],
+	[TAGS_KEYS.ADDONS],
 	{
-		tags: ['addons'],
+		tags: [TAGS_KEYS.ADDONS],
 		revalidate: 60 * 60 * 24, // 24 hours
 	},
 );

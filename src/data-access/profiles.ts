@@ -1,11 +1,12 @@
 import 'server-only';
 
+import { unstable_cache } from 'next/cache';
 import { eq } from 'drizzle-orm';
 
 import { db } from '@/database';
 import { profilesTable } from '@/database/schema';
 import { getImageUrl } from '@/lib/s3';
-import { unstable_cache } from 'next/cache';
+import { TAGS_KEYS } from '@/constants';
 
 export const getUserProfile = unstable_cache(
 	async (userId?: string) => {
@@ -21,8 +22,8 @@ export const getUserProfile = unstable_cache(
 			avatarUrl: profile.avatarKey ? getImageUrl(profile.avatarKey) : '',
 		};
 	},
-	['user-profile'],
-	{ tags: ['user-profile'], revalidate: 60 * 60 * 24 },
+	[TAGS_KEYS.USER_PROFILE],
+	{ tags: [TAGS_KEYS.USER_PROFILE], revalidate: 60 * 60 * 24 },
 );
 
 export async function createUserProfile(userId: string, username: string, avatarKey?: string) {

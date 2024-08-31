@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ShoppingBagIcon, StarIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
@@ -8,11 +9,10 @@ import {
 	CandleReviews,
 	CandleImageGallery,
 } from './_components';
+import { Button } from '@/components/ui/button';
 import { getAllAddons } from '@/data-access/addons';
 import { getCandleBySlug } from '@/data-access/candles';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 interface CandleDetailsPageProps {
 	params: Readonly<{

@@ -2,6 +2,7 @@ import { unstable_cache } from 'next/cache';
 
 import { db } from '@/database';
 import { getImageUrl } from '@/lib/s3';
+import { TAGS_KEYS } from '@/constants';
 
 export const getFeaturedCandles = unstable_cache(
 	async () => {
@@ -46,9 +47,9 @@ export const getAllCandles = unstable_cache(
 			images: candle.images.map(image => getImageUrl(image.imageKey)),
 		}));
 	},
-	['candles'],
+	[TAGS_KEYS.CANDLES],
 	{
-		tags: ['candles'],
+		tags: [TAGS_KEYS.CANDLES],
 		revalidate: 60 * 60, // 1 hour
 	},
 );
@@ -75,9 +76,9 @@ export const getCandleBySlug = unstable_cache(
 			images: candle.images.map(image => getImageUrl(image.imageKey)),
 		};
 	},
-	['candle'],
+	[TAGS_KEYS.CANDLE_BY_SLUG],
 	{
-		tags: ['candle'],
+		tags: [TAGS_KEYS.CANDLE_BY_SLUG],
 		revalidate: 60 * 60, // 1 hour
 	},
 );
