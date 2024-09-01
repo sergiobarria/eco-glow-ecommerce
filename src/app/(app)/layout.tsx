@@ -9,7 +9,6 @@ export default async function AppLayout({
 	return (
 		<div className="flex min-h-screen flex-col bg-white">
 			<Header />
-			{/* <AppHeader userProfile={profile} /> */}
 			<main className="flex-1">{children}</main>
 			<Footer />
 		</div>
