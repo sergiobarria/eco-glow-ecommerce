@@ -14,21 +14,24 @@ export function CandleImageGallery({ images }: CandleDetailsPageProps) {
 
 	return (
 		<div>
-			<Image
-				src={activeImage}
-				alt="Candle"
-				width={400}
-				height={400}
-				className="h-auto w-full rounded-lg bg-gray-100"
-				priority
-			/>
+			<div className="relative max-h-[500px] w-full overflow-hidden">
+				<Image
+					src={activeImage}
+					alt="Candle"
+					width={1000}
+					height={1000}
+					className="h-auto max-h-[500px] w-full rounded-lg bg-gray-100 object-cover"
+					priority
+					sizes="100vw"
+				/>
+			</div>
 
-			{/* DISPLAY ADDITIONAL IMAGES THUMBNAILS */}
+			{/* Additional Image Thumbnails */}
 			<div className="mt-4 flex items-center gap-2">
 				{images.map((image, idx) => (
 					<div
 						key={image}
-						className="relative aspect-square size-20 cursor-pointer rounded-lg bg-gray-100"
+						className="relative aspect-square h-20 w-20 cursor-pointer rounded-lg bg-gray-100"
 						onClick={() => setActiveImage(image)}
 					>
 						<Image

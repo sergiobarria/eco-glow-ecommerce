@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ShoppingBagIcon, StarIcon } from 'lucide-react';
+import { ArrowLeftIcon, ShoppingBagIcon, StarIcon } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 import {
@@ -14,6 +14,7 @@ import { getAllAddons } from '@/data-access/addons';
 import { getCandleBySlug } from '@/data-access/candles';
 import { cn } from '@/lib/utils';
 import { getCurrentAuthenticatedUser } from '@/lib/auth/session';
+import { MaxWidthContainer } from '@/components/site/max-width-container';
 
 interface CandleDetailsPageProps {
 	params: Readonly<{
@@ -43,7 +44,16 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 	};
 
 	return (
-		<div className="container mx-auto px-4 py-8 lg:px-6">
+		<MaxWidthContainer className="my-8">
+			<Button asChild variant="link" className="mb-4">
+				<Link
+					href="/shop"
+					className="flex items-center space-x-2 text-gray-600 hover:text-gray-900"
+				>
+					<ArrowLeftIcon className="size-4" />
+					<span>Return to Shop</span>
+				</Link>
+			</Button>
 			<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 				<CandleImageGallery images={images} />
 				<div>
@@ -91,6 +101,6 @@ export default async function CandleDetailsPage({ params }: CandleDetailsPagePro
 				<h2 className="mb-4 text-2xl font-bold">Recommended Products</h2>
 				<p className="text-gray-600">Recommended Products will be displayed here.</p>
 			</div>
-		</div>
+		</MaxWidthContainer>
 	);
 }

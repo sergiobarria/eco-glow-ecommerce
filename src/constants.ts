@@ -8,4 +8,5 @@ export const TAGS_KEYS = {
 	CART_DETAILS: 'cart-details',
 	CART_ITEMS: 'cart-items',
 	CART_ITEMS_COUNT: 'cart-items-count',
+	CATEGORIES: 'categories',
 };

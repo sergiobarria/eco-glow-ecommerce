@@ -3,6 +3,8 @@ import { unstable_cache } from 'next/cache';
 import { db } from '@/database';
 import { getImageUrl } from '@/lib/s3';
 import { TAGS_KEYS } from '@/constants';
+import { and, desc, eq, like, sql } from 'drizzle-orm';
+import { candlesTable, categoriesTable, imagesTable } from '@/database/schema';
 
 export const getFeaturedCandles = unstable_cache(
 	async () => {
@@ -31,20 +33,36 @@ export const getFeaturedCandles = unstable_cache(
 );
 
 export const getAllCandles = unstable_cache(
-	async () => {
-		const result = await db.query.candlesTable.findMany({
-			orderBy: (records, { desc }) => [desc(records.created)],
-			with: {
-				images: {
-					columns: { imageKey: true },
-					limit: 1,
-				},
-			},
-		});
+	async (search?: string, category?: string) => {
+		const searchCondition = search ? like(candlesTable.name, `%${search}%`) : undefined;
+		const selectedCategory = category === 'all' ? undefined : category;
+		const categoryCondition = selectedCategory
+			? eq(categoriesTable.name, selectedCategory)
+			: undefined;
 
-		return result.map(candle => ({
-			...candle,
-			images: candle.images.map(image => getImageUrl(image.imageKey)),
+		// Combine conditions
+		const whereConditions = and(searchCondition, categoryCondition);
+
+		// query using joins and conditions
+		const results = await db
+			.select({
+				candle: candlesTable,
+				category: categoriesTable.name,
+				image: sql<
+					string | null
+				>`(SELECT image_key FROM ${imagesTable} WHERE ${imagesTable.candleId} = ${candlesTable.id} LIMIT 1) as imageKey`,
+			})
+			.from(candlesTable)
+			.leftJoin(categoriesTable, eq(candlesTable.categoryId, categoriesTable.id))
+			.where(whereConditions)
+			.orderBy(desc(candlesTable.created))
+			.limit(10)
+			.all();
+
+		return results.map(result => ({
+			...result.candle,
+			category: result.category,
+			image: getImageUrl(result.image as string),
 		}));
 	},
 	[TAGS_KEYS.CANDLES],
