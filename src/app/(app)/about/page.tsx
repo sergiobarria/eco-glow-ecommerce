@@ -30,11 +30,12 @@ export default function AboutPage() {
 						</div>
 						<div className="lg:order-first">
 							<Image
-								src="https://placehold.jp/400x400.png"
+								src="/placeholder.jpg"
 								alt="EcoGlow founder making candles"
 								width={400}
 								height={300}
 								className="rounded-lg object-cover"
+								priority
 							/>
 						</div>
 					</div>
@@ -106,6 +107,9 @@ export default function AboutPage() {
 								className="w-full rounded-lg object-cover"
 								fill
 							/>
+
+							{/* Image Overlay */}
+							<div className="absolute inset-0 rounded-lg bg-black bg-opacity-50" />
 						</div>
 					</div>
 				</div>
