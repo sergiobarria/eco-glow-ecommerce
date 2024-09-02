@@ -1,12 +1,61 @@
 import 'server-only';
 
 import { unstable_cache } from 'next/cache';
-import { count, eq, sum } from 'drizzle-orm';
+import { eq, sum } from 'drizzle-orm';
 
 import { db } from '@/database';
-import { cartsTable, cartItemsTable, cartItemAddonsTable, usersTable } from '@/database/schema';
-import { TAGS_KEYS } from '@/constants';
+import { cartsTable, cartItemsTable, cartItemAddonsTable } from '@/database/schema';
 import { NewCartItem, NewCartItemAddon } from '@/database/types';
+import { getImageUrl } from '@/lib/s3';
+import { TAGS_KEYS } from '@/constants';
+
+export const getCheckoutCartDetails = unstable_cache(
+	async (userId?: string) => {
+		if (!userId) return undefined;
+
+		const cart = await db.query.cartsTable.findFirst({
+			where: (records, { eq }) => eq(records.userId, userId),
+			with: {
+				items: {
+					columns: { id: true, quantity: true, price: true },
+					with: {
+						candle: {
+							columns: { id: true, name: true, price: true },
+							with: { images: { columns: { imageKey: true }, limit: 1 } },
+						},
+						addons: {
+							with: {
+								addon: {
+									with: {
+										options: {
+											columns: { id: true, name: true, priceModifier: true },
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		});
+
+		return {
+			...cart,
+			items: cart?.items.map(item => ({
+				...item,
+				candle: {
+					...item.candle,
+					images: item.candle.images.map(image => getImageUrl(image.imageKey)),
+				},
+			})),
+		};
+	},
+	[TAGS_KEYS.CHECKOUT_CART_DETAILS],
+	{
+		tags: [TAGS_KEYS.CHECKOUT_CART_DETAILS],
+		revalidate: 60 * 60,
+	},
+);
 
 export const getUserCartDetails = unstable_cache(
 	async (userId: string) => {
@@ -27,7 +76,6 @@ export const getUserCartDetails = unstable_cache(
 
 export const getOrCreateUserCart = unstable_cache(
 	async (userId?: string) => {
-		console.log('GET OR CREATE USER CART CALLED');
 		if (!userId) return undefined;
 
 		const cart = await db.query.cartsTable.findFirst({

@@ -15,6 +15,7 @@ export type UserProfile = typeof schema.profilesTable.$inferSelect & { avatarUrl
 export type UserWithProfile = UserProfile & { user: DBUser };
 export type Cart = typeof schema.cartsTable.$inferSelect;
 export type CartItem = typeof schema.cartItemsTable.$inferSelect;
+export type CartItemAddon = typeof schema.cartItemAddonsTable.$inferSelect;
 export type NewCartItem = typeof schema.cartItemsTable.$inferInsert;
 export type NewCartItemAddon = typeof schema.cartItemAddonsTable.$inferInsert;
 
@@ -25,4 +26,27 @@ export type InsertCartItemAddon = Pick<NewCartItemAddon, 'addonId' | 'addonOptio
 export interface AddItemToCartInput {
 	cartItem: InsertCartItem;
 	addons: InsertCartItemAddon[];
+}
+
+// Custom type for the candle with selected fields
+export type CartCandle = Pick<Candle, 'id' | 'name' | 'price'> & {
+	images: string[];
+};
+
+// Custom type for cart item addons with selected fields
+export type CartItemAddonWithDetails = Pick<CartItemAddon, 'addonId' | 'addonOptionId'> & {
+	addon: Pick<Addon, 'id' | 'name'> & {
+		options: Pick<AddonOption, 'id' | 'name' | 'priceModifier'>[];
+	};
+};
+
+// Custom type for cart item with candle and addons details
+export interface CartItemWithDetails extends Pick<CartItem, 'id' | 'quantity' | 'price'> {
+	candle: CartCandle;
+	addons: CartItemAddonWithDetails[];
+}
+
+// Custom type for cart with items and their details
+export interface CartWithDetails extends Pick<Cart, 'id' | 'created' | 'modified' | 'userId'> {
+	items: CartItemWithDetails[];
 }

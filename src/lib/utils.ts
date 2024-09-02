@@ -1,3 +1,4 @@
+import { CartItemWithDetails } from '@/database/types';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -23,4 +24,37 @@ export function formatDate(date: string) {
 		month: 'long',
 		day: 'numeric',
 	});
+}
+
+export function calculateBasePrice(price: number) {
+	return price / 100;
+}
+
+export function calculateAddonsPrice(addons: CartItemWithDetails['addons']) {
+	return addons.reduce((acc, addon) => {
+		const selectedAddonOpt = addon.addon.options.find(opt => opt.id === addon.addonOptionId);
+		if (!selectedAddonOpt) return acc;
+
+		return acc + selectedAddonOpt.priceModifier;
+	}, 0);
+}
+
+export function calculateItemPrice(item: CartItemWithDetails) {
+	const basePrice = calculateBasePrice(item.price);
+	const addonsPrice = calculateAddonsPrice(item.addons);
+
+	return basePrice + addonsPrice;
+}
+
+export function calculateTotalPerItem(item: CartItemWithDetails) {
+	const itemPrice = calculateItemPrice(item);
+	return itemPrice * item.quantity;
+}
+
+export function calculateSubtotal(cartItems: CartItemWithDetails[]) {
+	if (!cartItems) return 0;
+
+	return cartItems.reduce((acc, item) => {
+		return acc + calculateTotalPerItem(item);
+	}, 0);
 }

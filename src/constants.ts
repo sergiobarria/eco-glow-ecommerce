@@ -6,6 +6,7 @@ export const TAGS_KEYS = {
 	USER_PROFILE: 'user-profile',
 	USER_CART: 'user-cart',
 	CART_DETAILS: 'cart-details',
+	CHECKOUT_CART_DETAILS: 'checkout-cart-details',
 	CART_ITEMS: 'cart-items',
 	CART_ITEMS_COUNT: 'cart-items-count',
 	CATEGORIES: 'categories',
